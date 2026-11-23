@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090d16">
+  <title>AirDraw Web | Nilai University</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">AD</div>
+        <div>
+          <h1>AirDraw <span>WEB</span></h1>
+          <p>Gesture-controlled drawing studio</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="status-pill"><i id="statusDot"></i><span id="statusText">Camera not started</span></div>
+        <button class="button button-primary" id="startButton">Start camera</button>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <section class="stage-panel">
+        <div class="stage-heading">
+          <div>
+            <h2>Live canvas</h2>
+            <p>Show your hand to the camera and start drawing in the air.</p>
+          </div>
+          <div class="mode-chip" id="modeChip">IDLE</div>
+        </div>
+
+        <div class="stage" id="stage">
+          <video id="webcam" autoplay playsinline muted></video>
+          <canvas id="paintCanvas"></canvas>
+          <canvas id="overlayCanvas"></canvas>
+          <div class="camera-placeholder" id="cameraPlaceholder">
+            <div class="camera-icon">◉</div>
+            <h3>Your canvas is waiting</h3>
+            <p>Start the camera to begin hand tracking.</p>
+          </div>
+          <div class="stage-hud">
+            <span id="trackingLabel">HAND: NOT DETECTED</span>
+            <span id="fpsLabel">-- FPS</span>
+          </div>
+        </div>
+
+        <div class="stage-footer">
+          <span><b class="legend-dot green"></b> Pinch detected</span>
+          <span><b class="legend-dot orange"></b> Cursor / hover</span>
+          <span id="handLabel">No hand</span>
+        </div>
+      </section>
+
+      <aside class="tools-panel">
+        <section class="tool-section">
+          <div class="section-title"><h2>Brush</h2><span id="brushValue">8 px</span></div>
+          <input id="brushSize" type="range" min="2" max="40" value="8">
+          <div class="range-labels"><span>Fine</span><span>Thick</span></div>
+        </section>
+
+        <section class="tool-section">
+          <div class="section-title"><h2>Colors</h2><span>Choose a color</span></div>
+          <div class="swatches" id="swatches">
+            <button class="swatch selected" data-color="#00e676" aria-label="Green" style="--swatch:#00e676"></button>
+            <button class="swatch" data-color="#2979ff" aria-label="Blue" style="--swatch:#2979ff"></button>
+            <button class="swatch" data-color="#ff9100" aria-label="Orange" style="--swatch:#ff9100"></button>
+            <button class="swatch" data-color="#ffea00" aria-label="Yellow" style="--swatch:#ffea00"></button>
+            <button class="swatch" data-color="#e040fb" aria-label="Magenta" style="--swatch:#e040fb"></button>
+            <button class="swatch" data-color="#ffffff" aria-label="White" style="--swatch:#ffffff"></button>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="section-title"><h2>Tools</h2></div>
+          <div class="tool-buttons">
+            <button class="tool-button active" id="brushTool"><span>✎</span><b>Brush</b></button>
+            <button class="tool-button" id="eraserTool"><span>⌫</span><b>Eraser</b></button>
+          </div>
+          <div class="action-buttons">
+            <button class="button button-secondary" id="clearButton">Clear canvas</button>
+            <button class="button button-secondary" id="saveButton">Save PNG</button>
+          </div>
+        </section>
+
+        <section class="tool-section gesture-section">
+          <div class="section-title"><h2>Gesture guide</h2><span>Live controls</span></div>
+          <div class="gesture-row"><div class="gesture-icon">🤏</div><div><b>Pinch</b><small>Thumb + index: draw</small></div></div>
+          <div class="gesture-row"><div class="gesture-icon">☝</div><div><b>Index finger up</b><small>Erase while not pinching</small></div></div>
+          <div class="gesture-row"><div class="gesture-icon">🖐</div><div><b>All fingers up</b><small>Idle / stop drawing</small></div></div>
+          <p class="hint">You can also use the buttons and color swatches with your mouse.</p>
+        </section>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <span>AirDraw Web · Vanilla HTML, CSS & JavaScript</span>
+      <span>Hand tracking runs locally in your browser after the model loads.</span>
+    </footer>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
