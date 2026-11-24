@@ -41,9 +41,9 @@ button { cursor: pointer; }
 .stage-heading h2,.section-title h2 { margin:0; font-size:14px; letter-spacing:-.2px; }
 .stage-heading p { font-size:11px; }
 .mode-chip { padding:7px 11px; color:#91a0b7; }
-.stage { width:100%; aspect-ratio:16/9; position:relative; overflow:hidden; border-radius:12px; background:#05080e; border:1px solid #27344a; isolation:isolate; }
+.stage { width:100%; aspect-ratio:var(--camera-ratio, 16/9); position:relative; overflow:hidden; border-radius:12px; background:#05080e; border:1px solid #27344a; isolation:isolate; }
 #webcam,#paintCanvas,#overlayCanvas { position:absolute; inset:0; width:100%; height:100%; }
-#webcam { object-fit:fill; transform:scaleX(-1); opacity:.92; }
+#webcam { object-fit:contain; transform:scaleX(-1); opacity:.92; }
 #paintCanvas,#overlayCanvas { pointer-events:none; }
 #paintCanvas { z-index:2; }
 #overlayCanvas { z-index:3; }
